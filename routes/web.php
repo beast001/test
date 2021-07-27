@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminNewApps;
 use App\Http\Controllers\AdminRenewApps;
 use App\Http\Controllers\ChatsController;
 use App\Http\Controllers\ClearanceCert;
+use App\Http\Controllers\Home;
 use App\Http\Controllers\NewApplicant;
 use App\Http\Controllers\RenewalApplicant;
 use Illuminate\Support\Facades\Route;
@@ -27,10 +28,10 @@ Route::get('/chat', [ChatsController::class, 'chat']);
 
 
 //user side
-Route::view('/', 'home')->middleware('auth','user_auth');
+Route::get('/', [Home::class, 'home'])->middleware('auth','user_auth');
 
 
-Route::view('/home', 'home')->middleware('auth','user_auth');
+Route::get('/home', [Home::class, 'home'])->middleware('auth','user_auth');
 
 //New application routes
 Route::get('/new_application',[NewApplicant::class,'new_applicant'] )->middleware('auth','user_auth');
@@ -60,9 +61,20 @@ Route::post('/dashboard_renew_approve',[AdminRenewApps::class,'approve'])->middl
 Route::post('/dashboard_renew_reject',[AdminRenewApps::class,'reject'])->middleware('admin_auth');
 
 
-//invoice page
+//Cert pages admin
 
-Route::get('/clearance_cert',[ClearanceCert::class,'load_cert']);
+//Route::get('/clearance_cert',[ClearanceCert::class,'load_cert']);
 Route::get('/print_cert',[ClearanceCert::class, 'print']);
+
+//cert pages user side
+
+Route::get('renewal_cert{id}',[ClearanceCert::class,'renewal_cert']);
+Route::get('new_cert{id}',[ClearanceCert::class,'new_cert']);
+Route::get('print_new{id}',[ClearanceCert::class,'print_new']);
+Route::get('/print_renew{id}',[ClearanceCert::class,'print_renew']);
+
+//password routes
+Route::view('/password_reset', 'auth.forgot-password');
+
 
 

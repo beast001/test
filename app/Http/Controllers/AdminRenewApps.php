@@ -55,14 +55,20 @@ class AdminRenewApps extends Controller
             'tottal_applications' => $tottal_applications,
             'completed_percentage' => $completed_percentage,
             'messages'=>$messages,
-            'message_no'=>$messages_no]);;
+            'message_no'=>$messages_no,]);
     }
 
     public function view_application($id)
     {
         $info_data = Renewal::where('id', '=', $id)->first();
+        $user_id = Auth::user()->id;
 
-        return view('admin-renew-view', ['info_data' => $info_data]);
+        $messages =Message::where('to', '=', $user_id, 'AND', 'status', '=', 'unread')->get();
+        $messages_no =Message::where('to', '=', $user_id)->get()->count();
+
+        return view('admin-renew-view', ['info_data' => $info_data,
+            'messages'=>$messages,
+            'message_no'=>$messages_no,]);
     }
 
     public function approve(Request $request)
@@ -104,9 +110,14 @@ class AdminRenewApps extends Controller
 
             ]);
 
+            $user_id = Auth::user()->id;
+
+            $messages =Message::where('to', '=', $user_id, 'AND', 'status', '=', 'unread')->get();
+            $messages_no =Message::where('to', '=', $user_id)->get()->count();
+
 
             session(['meso' => 'Application Approved Successfully']);
-            return redirect('/clearance_cert');
+            return redirect('/dashboard_renew_apps');
 
         } else {
             session(['duplicate' => 'Application Approved Successfully']);

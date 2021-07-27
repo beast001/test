@@ -61,8 +61,14 @@ class AdminNewApps extends Controller
     public function view_application($id)
     {
         $info_data = NewApplicant::where('id', '=', $id)->first();
+        $user_id = Auth::user()->id;
 
-        return view('admin-new-view', ['info_data' => $info_data]);
+        $messages =Message::where('to', '=', $user_id, 'AND', 'status', '=', 'unread')->get();
+        $messages_no =Message::where('to', '=', $user_id)->get()->count();
+
+        return view('admin-new-view', ['info_data' => $info_data,
+            'messages'=>$messages,
+            'message_no'=>$messages_no,]);
     }
 
     public function approve(Request $request)
@@ -110,7 +116,7 @@ class AdminNewApps extends Controller
 
 
         session(['meso' => 'Application Approved Successfully']);
-        return redirect('/clearance_cert');
+        return redirect('/dashboard_new_apps');
         } else {
             session(['duplicate' => 'Application Approved Successfully']);
             return redirect('/dashboard_new_apps_id_' . $application_id);

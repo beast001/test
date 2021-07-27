@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Message;
 use App\Models\NewApplicant as appmodel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -9,8 +10,14 @@ use Illuminate\Support\Facades\Auth;
 class NewApplicant extends Controller
 {
     public function new_applicant()
-    {
-        return view('new-application');
+    {$user_id = Auth::user()->id;
+
+        $messages =Message::where('to', '=', $user_id, 'AND', 'status', '=', 'unread')->get();
+        $messages_no =Message::where('to', '=', $user_id)->get()->count();
+        return view('new-application',[
+            'messages'=>$messages,
+            'messages_no'=>$messages_no,
+        ]);
     }
 
     public function new_applicant_submit(Request $request)

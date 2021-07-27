@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Message;
 use App\Models\Renewal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -9,7 +10,14 @@ use Illuminate\Support\Facades\Auth;
 class RenewalApplicant extends Controller
 {
     public function renewal_applicant(){
-        return view('renewal-applicant');
+        $user_id = Auth::user()->id;
+
+        $messages =Message::where('to', '=', $user_id, 'AND', 'status', '=', 'unread')->get();
+        $messages_no =Message::where('to', '=', $user_id)->get()->count();
+        return view('renewal-applicant',[
+            'messages'=>$messages,
+            'messages_no'=>$messages_no,
+        ]);
     }
     public function renewal_submit(Request $request){
         //validation rules
