@@ -39,6 +39,19 @@
                                     </span>
                 @enderror
             </div>
+
+
+            <div class="form-group">
+                <input id="phone_number" type="number" placeholder="Phone No" class="form-control @error('phone_number') is-invalid @enderror" name="phone_number" value="{{ old('phone_number') }}" required autocomplete="phone_number">
+
+                @error('phone_number')
+                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                @enderror
+            </div>
+
+
             <div class="form-group">
                 <input id="email" type="email" placeholder="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
 
@@ -60,10 +73,10 @@
             <div class="form-group">
                 <input id="password-confirm" placeholder="ConfirmPassword" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
             </div>
-            <button type="submit" class="btn btn-primary block full-width m-b">Register</button>
+            <button type="submit" class="btn btn-danger block full-width m-b">Register</button>
 
             <p class="text-muted text-center"><small>Already have an account?</small></p>
-            <a class="btn btn-sm btn-white btn-block" href="/login">Login</a>
+            <a class="btn btn-sm btn-info btn-block" href="/login">Login</a>
         </form>
         <p class="m-t"> <small>Inspinia we app framework base on Bootstrap 3 &copy; 2014</small> </p>
     </div>

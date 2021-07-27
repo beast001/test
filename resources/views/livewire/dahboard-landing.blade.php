@@ -7,7 +7,7 @@
     <div class="col-lg-12">
         <div class="ibox float-e-margins">
             <div class="ibox-title">
-                <h5>Pending New Applications List:</h5>
+                <h5>List of all applications:</h5>
             </div>
 
             <div class="ibox-content">
@@ -29,6 +29,7 @@
                         <th>Name</th>
                         <th>Company</th>
                         <th>Status</th>
+                        <th>Type</th>
                         <th>Date Applied</th>
                         <th>View</th>
                     </tr>
@@ -39,7 +40,19 @@
                             <td>{{$application->id}}</td>
                             <td>{{$application->name}} </td>
                             <td>{{ $application->company_name }}</td>
+                            <td class="center">{{ $application->status }} </td>
+                            <td class="center">New app</td>
+                            <td class="center">{{ $application->created_at->diffForHumans() }}</td>
+                            <td class="center"><a href="/dashboard_new_apps_id_{{$application->id}}"> <i class="fa fa-eye"></i> </a></td>
+                        </tr>
+                    @endforeach
+                    @foreach($renew_applications as $application)
+                        <tr class="gradeX">
+                            <td>{{$application->id}}</td>
+                            <td>{{$application->name}} </td>
+                            <td>{{ $application->company }}</td>
                             <td class="center">{{ $application->status }}</td>
+                            <td class="center">Renewal</td>
                             <td class="center">{{ $application->created_at->diffForHumans() }}</td>
                             <td class="center"><a href="/dashboard_new_apps_id_{{$application->id}}"> <i class="fa fa-eye"></i> </a></td>
                         </tr>

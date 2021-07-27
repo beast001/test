@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>INSPINIA | Login 2</title>
+    <title>ICTA | Login </title>
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
@@ -23,22 +23,22 @@
 
         <div class="col-md-6">
 
-            <h2 class="font-bold">Welcome to IN+</h2>
+            <h2 class="font-bold">Welcome to ICTA</h2>
 
             <p>
-                Perfectly designed and precisely prepared admin theme with over 50 pages with extra new web app views.
+                Apply for your clearance letter today at the comfort of your home/office.
             </p>
 
             <p>
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
+                Lets go paperless with the E-clearance application system
             </p>
 
             <p>
-                When an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                Submit your application today and get your clearacne letter instantly.
             </p>
 
             <p>
-                <small>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</small>
+                <small>Paperless society.</small>
             </p>
 
         </div>
@@ -66,17 +66,17 @@
                     </div>
                     <button type="submit" class="btn btn-danger block full-width m-b">Login</button>
 
-                    <a href="#">
+                    <a href="/password_reset">
                         <small>Forgot password?</small>
                     </a>
 
                     <p class="text-muted text-center">
                         <small>Do not have an account?</small>
                     </p>
-                    <a class="btn btn-sm btn-white btn-block" href="/register">Create an account</a>
+                    <a class="btn btn-sm btn-info btn-block" href="/register">Create an account</a>
                 </form>
                 <p class="m-t">
-                    <small>Inspinia we app framework base on Bootstrap 3 &copy; 2014</small>
+                    <small>The Information and Communication Technology Authority &copy; 2021</small>
                 </p>
             </div>
         </div>
@@ -84,10 +84,10 @@
     <hr/>
     <div class="row">
         <div class="col-md-6">
-            Copyright Example Company
+            Copyright ICTA
         </div>
         <div class="col-md-6 text-right">
-            <small>© 2014-2015</small>
+            <small>© 2021-2022</small>
         </div>
     </div>
 </div>
